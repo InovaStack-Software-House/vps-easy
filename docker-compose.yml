@@ -1,12 +1,13 @@
 services:
   hermes-agent:
-    image: hermes-agent:latest
+    image: nousresearch/hermes-agent:latest
     container_name: hermes-orquestrador
     restart: unless-stopped
     env_file:
       - .env
     volumes:
-      - ${WORKSPACE_PATH}:/app/workspace 
+      - ${WORKSPACE_PATH}:/app/workspace
+      - ./hermes-data:/opt/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - inova-ai-network
