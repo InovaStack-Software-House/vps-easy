@@ -22,7 +22,6 @@ RUN docker-php-ext-install \
     pdo_mysql \
     pgsql \
     mysqli \
-    mysql \
     bcmath \
     zip \
     intl \
@@ -41,7 +40,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Instala o OpenCode CLI globalmente
-RUN npm install -g @opencode/cli
+RUN npm install -g opencode-ai
 
 # Define o diretório de trabalho padrão
 WORKDIR /app
