@@ -22,7 +22,7 @@ services:
       - .env
     volumes:
       - ${WORKSPACE_PATH}:/app
-      - ./opencode-config:/root/.opencode
+      - ./opencode-config:/root/.config/opencode
     networks:
       - inova-ai-network
 
