@@ -1,0 +1,31 @@
+services:
+  hermes-agent:
+    image: hermes-agent:latest
+    container_name: hermes-orquestrador
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ${WORKSPACE_PATH}:/app/workspace 
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - inova-ai-network
+
+  workspace-opencode:
+    build: 
+      context: .
+      dockerfile: Dockerfile.workspace
+    container_name: dev-workspace
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env
+    volumes:
+      - ${WORKSPACE_PATH}:/app
+      - ./opencode-config:/root/.opencode
+    networks:
+      - inova-ai-network
+
+networks:
+  inova-ai-network:
+    driver: bridge
